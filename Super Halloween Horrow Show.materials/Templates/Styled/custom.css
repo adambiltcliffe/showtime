@@ -1,0 +1,24 @@
+:root{
+	/* Default Parchment style */
+	--light-fg: #222;
+	--light-bg: #fff;
+	--light-input: #0b4c8e;
+	--light-body-fg: #000;
+	--light-body-bg: #fff;
+	--light-header: #eee;
+	
+	/* Based on GarGlk's Slate Darker theme */
+	--dark-fg: #e7e8e9;
+	--dark-bg: #232629;
+	--dark-input: #74abff;
+	--dark-body-fg: #fff;
+	--dark-body-bg: #000;
+	--dark-header: #464d53;
+	
+	--normal-font: Georgia, "AsyncGlk Serif", serif;
+	--mono-font: "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", monospace;
+	
+	--header-size: 72px;
+	--footer-size: 24px;
+	--game-width: 600px;
+}
