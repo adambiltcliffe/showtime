@@ -1,0 +1,898 @@
+(story title) Super Halloween Horror Show
+(story author) Adam Biltcliffe
+(story noun) A superhero text adventure
+(story release 2)
+(additional banner text) Type "about" for further information.
+
+(story blurb) You've finally been awarded your Junior Protectorate badge, and tonight is your first real mission: to make sure that the City Commissioner's Halloween party is a success, regardless of the intentions of the local rogue's gallery of supervillains.
+
+%% Treaty of Babel says this version should have a different IFID to the Inform version
+(story ifid) F4622E13-797C-42A8-A13F-353BEC1015C2
+
+(intro)
+    (clear)
+    Tonight is the night! No more training, no more probationary period; this is it, your first real mission! The City Commissioner is holding a Halloween party for all the city's most storied citizens, and prudence dictates that it would only be sensible to have a few superheroes on hand just in case anyone were to try anything ... villainous?
+    (banner)
+    (try [look])
+
+#player
+(descr *) Most of the time you're just a regular fifteen-year-old, juggling school, friends, chores and keeping your parents off your back, the usual. But tonight, decked out in your sequinned costume, you're Showtime, a badge-wearing member of the Junior Protectorate, and you're here to do the city proud, whatever it takes.
+(* is #in #entrance)
+(current player *)
+
+%% The map
+
+#entrance
+(room *)
+(name *) Mansion Entrance
+(look *) You're just outside the entrance to the Commissioner's mansion. Inside, to the west, you can see the lights and hear the sounds of the kind of society party you've dreamed of attending ever since you first donned your superhero costume and were accepted into the Junior Protectorate.
+(from * go #west to #foyer)
+
+#foyer
+(room *)
+(name *) Foyer
+(dict *) foyer
+(look *)
+    (if)
+        (#graveyard-hallway is unvisited)
+    (then)
+        Mere minutes ago, you were in the middle of a vibrant party. Now you
+    (else)
+        You
+    (endif)
+    are adrift and alone in almost pitch blackness. You can just make out the faint outline of a door to the west.
+(from * go #west to #graveyard-hallway)
+
+#graveyard-hallway
+(room *)
+(name *) Graveyard Hallway
+(look *)
+    (select)
+        Outside the eerie darkness of the foyer, you see that the mansion has been remade in the image of a creepy haunted house!
+    (or) (stopping)
+    Gravestones now line the walls of what used to be a regular hallway, some worn as if by decades of rain. The darkness of the foyer looms to the east, and the hallway leads west. To the south, a door leads to what was previously the bar area.
+(from * go #east to #foyer)
+(from * go #west to #narrow-corridor)
+(from * go #south to #pandemonium)
+
+#narrow-corridor
+(room *)
+(name *) Narrow Corridor
+(look *) This part of the mansion features fewer of Eve's spooky decorations. The corridor runs from east to west.
+(from * go #east to #graveyard-hallway)
+(from * go #west to #dining-room)
+
+#dining-room
+(room *)
+(name *) Dining Room of the Dead
+(look *) This was once a stately dining room, but under Eve's stewardship, the delicious-looking dishes have been replaced with rotting corpses, some of them still twitching and moaning. You sincerely hope that those are only theatrical effects. Doors lead south and east, and the buffet area is to the north.
+(from * go #east to #narrow-corridor)
+(from * go #north to #buffet)
+(from * go #south to #haunted-staircase)
+
+#buffet
+(room *)
+(name *) Buffet of Blood
+(look *) There must have been a sumptuous buffet spread out here before Eve arrived, but now the food is all crushed underfoot. A few tables have been pushed together to form a makeshift barricade for people to hide behind. For some reason, blood is oozing out of the walls. The rest of the dining room is back south.
+(from * go #south to #dining-room)
+
+#haunted-staircase
+(room *)
+(name *) Haunted Staircase
+(look *) You're at the foot of a spiral staircase leading to one of the mansion's tower rooms. Barely-visible phantasms drift back and forth in the darkness above you. The dining room is back north.
+(from * go #north to #dining-room)
+(from * go #up to #top-of-tower)
+
+#top-of-tower
+(room *)
+(name *) Top of Tower
+(look *) You're atop one of the towers of the mansion. Through the windows to the east, you can see the central courtyard and the chasm which Negative Space vanished into. The only way out is back down.
+(from * go #down to #haunted-staircase)
+
+#pandemonium
+(room *)
+(name *) Pandemonium
+(look *) The bar area has given way to pandemonium, in the literal sense. Demonic visages grin and leer from the walls, and flames lick up around the periphery of the room. Foreboding doors allow egress to the north and south.
+(from * go #north to #graveyard-hallway)
+(from * go #south to #terrace)
+
+#terrace
+(room *)
+(name *) Torture Terrace
+(look *) This would once have been a charming spot to take in the night air, but now the terrace is adorned with instruments of torture: iron maidens, racks, all sorts of terrible things with spikes - some of them bearing signs of recent use. The bar area is through double doors back to the north, and a smaller door opens to the west.
+(from * go #north to #pandemonium)
+(from * go #west to #empty-hallway)
+
+#empty-hallway
+(room *)
+(name *) Empty Hallway
+(look *) This is a small hallway in the service areas of the mansion. Doors lead out to the terrace to the east and into the kitchen to the west.
+(from * go #east to #terrace)
+(from * go #west to #murder-kitchen)
+
+#murder-kitchen
+(room *)
+(name *) Murder Kitchen
+(look *) Smoke and flames from the ovens obscures your vision, and cleavers and carving knives dance ominously over your head. Doors lead north and east.
+(from * go #east to #empty-hallway)
+(from * go #north to #courtyard)
+
+#courtyard
+(room *)
+(name *) Central Courtyard
+(look *)
+    This is the central courtyard of the mansion. Compared to the hellscape of the kitchen to the south, the air is cool and calm. Discreet vegetation lines the perimeter of the courtyard.
+    (if) (#negative-space is #in #vault) (then)
+        A huge chasm has opened up in the ground, leading downwards.
+    (endif)
+(from * go #south to #murder-kitchen)
+(from * go #down to #vault)
+
+#vault
+(room *)
+(name *) Vault
+(dict *) vault
+(look *) This is the Commissioner's secret vault! Not a storage place for wealth or treasure, but something far more valuable - the records of all of the City's work against supervillainry, including details of many of the heroes who have contributed to the fight. If anyone ill-intentioned were to get their hands on this, it would be a disaster!
+
+%% Things
+
+#badge
+(name *) Junior Protectorate badge
+(your *)
+(dict *) junior protectorate badge
+(descr *) This is the badge that shows you're now a fully qualified superhero!
+(* is #heldby #player)
+
+#anti-key
+(name *) Anti-Key
+(singleton *)
+(dict *) anti key anti-key
+(descr *) Like Negative Space, it doesn't really look like anything; more that a part of the universe seems to be missing, a part which is shaped very specifically like a large key.
+
+%% Heroes and villains
+
+#eve
+(name *) All-Hallows Eve
+(dict *) all hallows all-hallows eve woman villainess supervillainess
+(animate *)
+(proper *)
+(female *)
+(descr *) The supervillainess looks supremely confident, resplendent in flowing purple robes and a skull mask.
+(* is #in #vault)
+
+#negative-space
+(name *) Negative Space
+(dict *) negative space man villain supervillain void
+(animate *)
+(proper *)
+(male *)
+(descr *) He doesn't look like a person at all, more that there's a person-shaped void in the scenery. Through it you can see distant stars.
+(* is #in #courtyard)
+
+#mighty-owl
+(name *) Mighty Owl
+(dict *) mighty owl man hero
+(heads *) owl man hero
+(animate *)
+(proper *)
+(male *)
+(descr *) A lantern-jawed titan in a feathered cloak, your mentor bustles about, checking that no-one is injured and glancing back and forth for signs that evil might strike again.
+(appearance * $ $) Mighty Owl is here, busily checking on the party guests to ensure that no-one is hurt.
+
+#kate
+(name *) Tripli-Kate
+(dict *) kate tripli-kate woman women girl girls identical teenager teenagers copy copies
+(animate *)
+(proper *)
+(female *)
+(descr *)
+    Three identical teenagers - or rather, three copies of the same teenager - in a relatively austere black suit. I guess when your power is so obvious, you don't really need a memorable outfit.
+    (par)
+    Although Kate's three bodies move independently, you keep catching sight of weird synchronicities. Like just now, you're pretty sure all three of her blinked at the same time.
+
+%% Emotions
+
+#resolve
+(name *) heroic resolve
+(emotion *)
+(dict *) heroic resolve
+(* is #heldby #player)
+
+#fear
+(name *) fear
+(emotion *)
+(dict *) fear
+
+#compassion
+(name *) compassion
+(emotion *)
+(dict *) compassion
+
+#admiration
+(name *) admiration for Mighty Owl
+(emotion *)
+(dict *) admiration for mighty owl
+(heads *) admiration
+ 
+#doubt
+(name *) self-doubt
+(emotion *)
+(dict *) self doubt self-doubt
+
+#urgency
+(name *) sense of urgency
+(emotion *)
+~(your *)
+(dict *) sense of urgency
+
+#hope
+(name *) hope
+(emotion *)
+(dict *) hope
+
+(your $Obj)
+    (emotion $Obj)
+
+(dict (your $)) your my
+
+(descr (emotion $))
+    There'll be time for reflecting on your feelings later, once the mission is over.
+
+%% Supporting cast
+
+(name (guests $)) frightened party-goers
+(dict (guests $)) guest guests civilian civilians party-goers party goers men women people frightened
+(animate (guests $))
+(descr (guests $)) Not long ago, these people were happily enjoying the Commissioner's party. Now they huddle in small, frightened groups, wary of whatever ghouls and ghosts All-Hallows Eve might be sending their way next.
+(plural (guests $))
+(appearance (guests $)) Some of the party-goers are huddled here, their enjoyment of the evening having given way to terror.
+
+#pg1
+(guests *)
+(* is #in #pandemonium)
+
+#pg2
+(guests *)
+(* is #in #terrace)
+
+#pg3
+(guests *)
+(* is #in #buffet)
+
+(name (skeleton $)) skeleton
+(dict (skeleton $)) skeleton
+(animate (skeleton $))
+(descr (skeleton $)) A tall skeleton, waving a scythe. Although it lacks any facial muscles to express itself with, it looks gleeful at the devastation Eve has brought to the Commissioner's party.
+(appearance (skeleton $)) A macabre skeleton capers here, grinning and wielding a scythe.
+
+#skele1
+(skeleton *)
+(* is #in #graveyard-hallway)
+
+#skele2
+(skeleton *)
+(* is #in #dining-room)
+
+#skele3
+(skeleton *)
+(* is #in #murder-kitchen)
+
+#homunculus
+(name *) twisted homunculus
+(dict *) twisted homunculus naked misshapen humanoid
+(animate *)
+(descr *) The naked, misshapen humanoid looms over the guard, pinning him in place with an unpleasant-looking serrated knife.
+(* is #in #empty-hallway)
+
+#guard
+(name *) guard
+(dict *) guard
+(animate *)
+(male *)
+(descr *)
+    (#homunculus is #in #empty-hallway)
+    The guard looks remarkably stoic for someone currently being held at knifepoint by a grotesque caricature of a human.
+(descr *)
+    The guard looks no worse the wear for his recent encounter with the homunculus.
+(* is #in #empty-hallway)
+
+#ring-of-keys
+(name *) ring of keys
+(dict *) ring of keys
+(descr *) A dozen or more keys hang from the guard's belt.
+(* is #heldby #guard)
+
+#bouncers
+(name *) bouncers
+(dict *) bouncers bouncer man woman guard guards
+(animate *)
+(pair *)
+(appearance *) Two bouncers are checking visitors off against the guest list as they arrive.
+(descr *) A man and a woman, both sporting sunglasses and poorly-fitting suits. They're here to keep away any troublemakers who might otherwise fancy crashing the party, but they won't be much help if anyone with superpowers decides to make an appearance tonight. That part is your job.
+(* is #in #entrance)
+
+%% Obstacles and progress
+
+(prevent [go #west])
+    (current room #entrance)
+    The bouncers block your way and give you an expectant look.
+
+~(bouncers are placated)
+(perform [show #badge to #bouncers])
+    (now) (bouncers are placated)
+    'Checks out,' says one of the bouncers to the other. 'Just a kid, but that's how the Protectorate are rolling these days.' He looks you up and down critically. 'You're here to help if anything goes down at the Commissioner's party? Really?'
+
+(perform [show #resolve to #bouncers])
+    ~(bouncers are placated)
+    'You can't come in,' says one of the bouncers.
+    (par)
+    'I'm here on Protectorate business,' you tell her. 'The Commissioner needs the city's best heroes on hand in case any villains try to cause trouble at the party, and I'm here to do my job and keep everyone safe.'
+    (par)
+    She looks unconvinced. 'If you're really Protectorate, prove it,' she says.
+
+(perform [show #resolve to #bouncers])
+    (bouncers are placated)
+    (now) (#resolve is nowhere)
+    (now) (#fear is #heldby #player)
+    'I'm a fully-fledged member of the Junior Protectorate,' you tell the bouncers. 'This is a high-profile event, and the Commissioner knows that she can count on us to protect everyone if any villains try anything. I know you think I'm just a kid, but I'm here to play my part.'
+    (par)
+    The bouncers part to allow you through. Inside, the foyer of the mansion is thronged with party-goers: politicans, celebrities, businesspeople, reporters. Somewhere across the sea of bodies, you catch sight of a familiar costume: your mentor, Mighty Owl, chatting with a gaggle of philanthropists.
+    (par)
+    Suddenly, the lights flicker and die. You hear a twisted cackle emanate from everywhere at once. 'Good evening, everybody!' says an all-too-familiar voice. 'The Commissioner is regrettably ... indisposed for this evening. But have no fear ... I will be taking over as your host for this once-in-a-lifetime event!'
+    (par)
+    The lights flash on for just a brief second, and you see her, high above the foyer, resplendent in her flowing purple costume: the supervillain, All-Hallows Eve!
+    (par)
+    Then all around you is screaming, and the press of panicked bodies.
+    (any key)
+    (clear)
+    Something is deeply wrong. You sense that you are still in the foyer of the mansion, but you can barely see anything. There is no sound from any of the party guests who surrounded you a few moments ago, just faint whispers and ominous scratching and scuttling. Your chest tightens.
+    (par)
+    Worse yet, there's a void inside you where your powers should be. You reach out ... but something is blocking you from calling on them. You're going to have to rely on your wits. Which, when you're scared witless, is not a great place to be.
+	(enter #foyer)
+    
+(prevent entering #narrow-corridor)
+    (#skele1 is #in #graveyard-hallway)
+    The skeleton prevents you!
+
+(prevent entering #pandemonium)
+    (#skele1 is #in #graveyard-hallway)
+    The skeleton prevents you!
+
+(prevent entering #haunted-staircase)
+    (#skele2 is #in #dining-room)
+    The skeleton prevents you!
+
+(prevent entering #courtyard)
+    (#skele3 is #in #murder-kitchen)
+    The skeleton prevents you!
+
+(perform [show #fear to (skeleton $Victim)])
+    (now) ($Victim is nowhere)
+    'Oh no, oh no,' you mutter to yourself. 'I can't take much more of this. Especially not skeletons. Anything but skeletons.'
+    (par)
+    The skeleton advances, grinning. 'Ho ho!' it says. 'It's skeleton time for you, kiddo! (bone pun) (no space) '
+    (par)
+    Distracted by thoughts of your impending demise, (skeleton defeat)
+
+(bone pun)
+    (select)
+        Do I have a BONE to pick with you!
+    (or)
+        You're gonna find out I'm bad to the BONE!
+    (or)
+        I hear you and my boss have a real BONE of contention! Are you hoping I'm gonna throw you a BONE? Better BONE up on getting your ass kicked, because once I get started I'm like a dog with a BONE!
+    (stopping)
+
+(skeleton defeat)
+    (select)
+        the skeleton fails to notice you sticking a foot out until it's too late. You grab it in an improvised judo hold, trip it over your leg, and fling it into the corner of the room, where it bursts apart into a pile of fragmented bones.
+    (or)
+        the skeleton is not fast enough to react as you step to the side, catch it by the elbow and sweep its legs out from under it. It lands bodily on the floor and bursts apart into a pile of fragmented bones.
+    (or)
+        the skeleton fails to pay attention to where it is waving its scythe. You grab hold of the shaft and give it a tug, and the skeleton overbalances and smashes itself to pieces on the floor.
+    (stopping)
+
+(on every tick in #narrow-corridor)
+    (select)
+        (now) (#kate is #in #narrow-corridor)
+        A sullen figure in black is lounging here. Almost immediately, you recognise her as Tripli-Kate, another recent recruit to the Junior Protectorate. She looks up as you approach, and her outline blurs, then coalesces into three identical clones of herself. None of them look pleased to see you.
+        (par)
+        'Of course it would have to be you,' she says. 'You're here with Mighty Owl, aren't you? Must be nice to have a mentor who actually cares about showing up to your missions with you. I got posted here on my own.'
+    (or) (stopping)
+
+(prevent entering #dining-room)
+    (#kate is #in #narrow-corridor)
+    Tripli-Kate blocks the corridor with her three bodies, glowering at you. There's no way past her.
+
+(perform [show #compassion to #kate])
+    ~(#anti-key is #heldby #kate)
+    (now) (#anti-key is #heldby #kate)
+    (now) (#kate is #in #top-of-tower)
+    'It sucks about your mentor,' you say. 'I've got lucky, getting assigned Mighty Owl, but it's no reflection on you that Heatray is distracted all of the time. But I totally get that that doesn't make it any easier to deal with right now.'
+    (par)
+    Kate sighs. 'No, you're right,' she says. 'I shouldn't dwell on it. In a couple of years we'll be going it alone anyway.' She turns and looks down the corridor to the west. 'Well, villains aren't going to defeat themselves,' she says, suddenly more upbeat. 'Race you!' Before you can say anything, all three of her are gone.
+
+(perform [show #compassion to #kate])
+    'It sucks about your mentor,' you say. 'I've got lucky -'
+    (par)
+    Kate cuts you off. 'You did that spiel already.'"
+
+(prevent entering #top-of-tower)
+    ~(#urgency is #heldby #player)
+    You place a foot tentatively on the staircase, looking upwards into the gloom. You risk a step upwards, and then another, but you have lingered too long and the ghosts are already beginning to draw close around you. You decide there is no way that you will make it safely to the top.
+
+(narrate leaving #haunted-staircase #up)
+    There's no time to waste! Ignoring the ghosts, you gallop up the stairs three at a time.
+
+(on every tick in #top-of-tower)
+    (select)
+        Tripli-Kate's three bodies are all staring anxiously out of the window, which overlooks the courtyard where you met Negative Space. 'This is serious,' she says. 'These are high-profile villains. What are we doing here? We're just kids.'
+        (par)
+        She pauses. 'I'm even meant to be prepared for this. Heatray said he had some intel that Negative Space was planning something. We did some research, looked into his weaknesses. Did you know that he was imprisoned for most of a decade in something called the Anti-Chamber? It turned his own powers back on him, prevented him from doing anything to escape.'
+        (par)
+        You see her take something dark from her pocket. 'Heatray gave me the key to the Anti-Chamber. Said it was pretty much a guaranteed victory if I ever ran into Negative Space. Now here I am, in exactly the situation he set me up for, and I don't even have the guts to go through with it.'
+    (or) (stopping)
+
+(perform [show #doubt to #kate])
+    (#anti-key is #heldby #kate)
+    (now) (#kate is nowhere)
+    (now) (#anti-key is #heldby #player)
+    'It's normal to be uncertain,' you say. 'We're doing all of these things for the first time, so of course we don't have confidence that we can do them. But all we can do is try our best.'
+    (par)
+    Kate closes her eyes and breathes deeply. 'Maybe you're right,' she says. 'But I don't think I'm going to be able to go through with it this time. Maybe you should take it.'
+    (par)
+    She holds something out to you - a key. Or more of an anti-key, a hole in space where a key should be. 'Go on,' she says. 'You're more ready for this than I am.'
+    (par)
+    You take the Anti-Key, marvelling at how it feels like the exact opposite of holding a key. When you look up a moment later, Tripli-Kate is gone.
+
+(prevent [show $ to #guard])
+    (#homunculus is #in #empty-hallway)
+    You can't get the guard's attention while he's being menaced by the homunculus.
+
+(perform [show #compassion to #homunculus])
+    (now) (#homunculus is nowhere)
+    'It must be awful, having to go around menacing people all the time,' you say. 'I bet All-Hallows Eve isn't even a good employer.'
+    (par)
+    'She's not bad,' says the homunculus. 'But this job isn't much good for my self-esteem. Everyone's all, grotesque this and twisted freak that. I hoped that maybe I could get a job in the service sector, maybe doing catering for the other minions. But she always wants me on the front line.'
+    (par)
+    'You don't have to work for Eve,' you point out. 'There are lots of job opportunities in catering.'
+    (par)
+    The homunculus thinks for a moment. 'You're right,' it says. 'Why waste my evening menacing this guard when I could be whipping up a tray of vol-au-vents?' The homunculus steps away from the stoic guard and, with a final look round the hallway, exits onto the terrace and vanishes into the night.
+
+(appearance #homunculus $ $)
+    A solitary guard is trapped here, menaced by a twisted homunculus with a huge knife.
+
+(appearance #guard $ $)
+    (#homunculus is #in #empty-hallway)    
+
+~(guard is convinced)
+
+(prevent entering #murder-kitchen)
+    ~(guard is convinced)
+    The door in that direction is locked. You can see a ring of keys on the guard's belt, though.
+
+(perform [show #resolve to #guard])
+    ~(guard is convinced)
+    (now) (guard is convinced)
+    'You have to let me through,' you say. 'There's a supervillain on the loose tonight and someone has to stop them!'
+    (par)
+    The guard looks you up and down. 'Are you sure you're up to it?' he asks. 'You don't look very ... experienced.'
+    (par)
+    'Sometimes,' you say in what you hope is a heroic tone, 'we have to step up even when we don't know for sure that we're up to the task.'
+    (par)
+    'Well, if you're sure,' says the guard, unlocking the door for you.
+
+(appearance #negative-space #in #courtyard)
+
+(on every tick in #courtyard)
+    (#negative-space is #in #courtyard)
+    (now) (#negative-space is #in #vault)
+    (now) (#resolve is nowhere)
+    (now) (#doubt is #heldby #player)
+    Your breath catches in your throat as your vision lights on the figure standing in the centre of the courtyard - or rather, not a figure, more a figure-shaped hole in reality. This is Negative Space, a villain you know all too well - and his mere presence creates a distortion in reality which suppresses the powers of many supers, yourself included. That explains why you've been unable to access your powers since Eve first attacked the mansion!
+    (par)
+    Negative Space laughs. 'Ah, a baby superhero,' he says. 'I'm afraid you're out of your depth here, little infant. All-Hallows Eve and I are going to make this quite the Halloween to remember. In fact, I think it's going to go DOWN in the history books!'
+    (par)
+    As he says 'down', a ripple of violet light bursts from around his feet. The ground shakes and splits, leaving a great chasm in the centre of the courtyard. Negative Space plunges down into it, laughing all the while.
+    (par)
+    You feel doubt flood into you. All-Hallows Eve was bad enough, but the presence of another high-profile villain here might make this all too much even for you and Mighty Owl to handle.
+
+(prevent entering #vault)
+    ~(#resolve is #heldby #player)
+    You lack the resolve to jump into the ominous chasm.
+
+(narrate leaving #courtyard #down)
+    You steel yourself and leap down into the chasm!
+
+~(player has examined civilians)
+
+(perform [examine (guests $)])
+    (now) (player has examined civilians)
+    (fail)
+
+(on every tick)
+    (player has examined civilians)
+    *(guests $Obj)
+    (player can see $Obj)
+    (if)
+        (#compassion is nowhere)
+    (then)
+        (now) (#compassion is #heldby #player)
+        The sight of these frightened civilians, desperate for aid, reminds you of why you joined the Junior Protectorate. You feel compassion stir within you.
+    (else)
+        (#mighty-owl is nowhere)
+        (current room $Room)
+        (now) (#mighty-owl is #in $Room)
+        (now) (#admiration is #heldby #player)
+        (par)
+        You regard the bedraggled civilians with dismay. 'Someone has to help them,' you mutter under your breath.
+        (par)
+        There is a whoosh of feathers, and Mighty Owl descends from on high. 'Fear not, Showtime!' he says. 'You and I are a mighty force for good! We will save these hapless bystanders from All-Hallows Eve's evil plot!'
+        (par)
+        The party-goers perk up immediately at the sound of his voice. You feel yourself flush with admiration.
+        (par)
+    (endif)
+
+(on every tick)
+    (player can see #mighty-owl)
+    (now) (#admiration is #heldby #player)
+    (if)
+        { ~(#doubt is #heldby #player) (or) (#anti-key is #heldby #player) }
+        ~(#resolve is #heldby #player)
+    (then)
+        (now) (#resolve is #heldby #player)
+        (now) (#fear is nowhere)
+        (now) (#doubt is nowhere)
+        In the presence of your mentor, you feel your fear subside and your heroic resolve begin to return.
+        (#anti-key is #heldby #player)
+        Now that you've found a weapon capable of defeating Negative Space, perhaps you can win the day after all.
+    (endif)
+    (#doubt is #heldby #player)
+    ~(#urgency is #heldby #player)
+    (now) (#urgency is #heldby #player)
+    (now) (#fear is nowhere)
+    Mighty Owl looks grave. 'Two villains arrayed against us,' he says. 'A challenge even for ones as noble as you and I, especially given that Negative Space's presence suppresses your own abilities. Quickly, Showtime! We must search the mansion and find some way to defeat them before their evil plan comes to fruition. There isn't a moment to lose!'
+    (par)
+    You feel a sense of urgency.
+
+(on every tick in #foyer)
+    { (#resolve is #heldby #player) (or) (#compassion is #heldby #player) (or) (#admiration is #heldby #player) }
+    (now) (#resolve is nowhere)
+    (now) (#compassion is nowhere)
+    (now) (#admiration is nowhere)
+    (now) (#fear is #heldby #player)
+    The cloying darkness tightens around you again. Your heart catches in your throat, everything forgotten but the crushing fear of unseen terrors.
+
+(perform [show #admiration to (guests $)])
+    (if)
+        (player can see #mighty-owl)
+    (then)
+        You blush. You could never express that out loud when he's right here!
+    (else)
+        (current room $Room)
+        (now) (#mighty-owl is #in $Room)
+        'Everything's going to be okay,' you tell the frightened civilians. 'My mentor, Mighty Owl, is here. He's amazing. He'll make sure everyone gets out okay, you'll see.'
+        (par)
+        'I saw Mighty Owl earlier,' says one of the party-goers. 'I hope he does save us. He's one of my favourite superheroes!'
+        (par)
+        There is a flurry of wings from behind you, and Mighty Owl himself steps into view. His hearing is exceptional, and he can never resist publicity. 'My young protege is not mistaken,' says Mighty Owl. 'Do not fear, noble citizens. Good will triumph over evil this day!' He puffs out his chest.
+    (endif)
+
+(appearance #negative-space #in #vault)
+    You can see (the #negative-space) and (the #eve) here.
+
+(appearance #eve #in #vault)
+    (#negative-space is #in #vault)
+
+(perform [show #anti-key to #negative-space])
+    (now) (#negative-space is nowhere)
+    (now) (#anti-key is nowhere)
+    (now) (#hope is #heldby #player)
+    You rack your brains for a pithy one-liner to show Negative Space you're not to be dismissed so easily. But you can't come up with anything, so you just pull the Anti-Key out of your pocket and dangle it in front of him instead. His eyes widen.
+    (par)
+    'The Anti-Key!' he gasps. 'Where did you get it? Surely you can't -'
+    (par)
+    Strange black light emanates from the Anti-Key, forcing you to throw your other hand over your eyes. A moment later, you risk opening them again. The Anti-Key is gone from your grasp, and Negative Space has gone with it!
+    (par)
+    You see All-Hallows Eve's eyes widen. The hollow feeling inside you vanishes as Negative Space's power-suppression field collapses. You feel your heart fill with hope!
+
+(perform [show #hope to #eve])
+    'What have you done?' wails Eve in horror. 'My beautiful plan, and all my lovely ghouls and ghosties! You superheroes are always ruining Halloween!'
+    (par)
+    'I'm not the one ruining the evening,' you say. 'I'm here to remind everyone about the true meaning of Halloween!' You pause. 'Wait, no, I think the true meaning of Halloween is about soul-crushing terror. Look, I'm new at this. But I'm a hero, and I'm going to save the day!'
+    (par)
+    You gather the feeling of hope inside you, and project it towards Eve in a sparkling beam of bright rainbow light. She flails helplessly as the energy bowls her off her feet and into the corner of the vault.
+	(any key)
+    (clear)
+	In moments, Mighty Owl and other members of the Protectorate have joined you. You are roundly congratulated for defeating a pair of full-fledged adult supervillains on your very first assignment. You make your way back out of the shattered vault where, with Eve and her minions banished, the party-goers are beginning to embrace the cheesy horror theme which now pervades the mansion.
+	(game over { You have won } )
+
+(prevent [go $])
+    (current room #vault)
+    This is the finale! You're not going anywhere!
+
+(on every tick in #vault)
+    (select)
+        The two villains are looking all about them with expressions of undisguised glee. Every supervillain in the city has dreamed about breaking into the Commissioner's vault.
+        (par)
+        Negative Space turns to regard you. 'Ah, the infant super,' he says. 'I warned you not to follow. I'm afraid the adults are busy.'
+    (or) (stopping)
+
+(after [look])
+    (current room #graveyard-hallway)
+    Wordless, terrifying whispers emanate from the foyer to the east.
+
+%% Miscellaneous responses for showing things to people that aren't required to finish the game
+
+%% We can show things to Eve, Negative Space, Mighty Owl, Kate, the skeletons, the party guests,
+%% the bouncers, the homunculus and the guard (but some combinations are not possible)
+
+%% Fear - Mighty Owl, Kate, guests, homunculus, guard
+
+(perform [show #fear to #kate])
+    'This whole situation is really scary,' you say.
+    (par)
+    'You're not making me feel any better about the fact that you're here, Showtime,' she snaps back.
+
+(perform [show #fear to #mighty-owl])
+    'I'm scared,' you say.
+    (par)
+    'It is normal to be scared, Showtime,' says Mighty Owl. 'The question is, will your fear lead you to fight harder, or to run away from the responsibilities you have shouldered?'
+
+(perform [show #fear to #homunculus])
+    'Oh, what an awful monster!' you say. 'I hope it doesn't come and start menacing me with that knife!'
+    (par)
+    The homunculus rolls its eyes and mutters something about respect.
+
+(perform [show #fear to (guests $)])
+    You make a frightened face towards a group of party guests. They ignore you.
+
+(perform [show #fear to #guard])
+    'Whatever is on the other side of that door, I bet it's something awful,' you say to the guard. 'Something horrifying and nightmarish.'
+    (par)
+    (if)
+        (guard is convinced)
+    (then)
+        The guard moves to re-lock the door.
+        (par)
+        'Wait, on second thoughts, I'm sure it's not so bad,' you say, stopping him.
+    (else)
+        'Just as well the door's locked, then,' says the guard.
+    (endif)
+
+%% Compassion - Eve, Negative Space, Mighty Owl, skeletons, guests, guard
+
+(perform [show #compassion to (skeleton $)])
+	'What an awful fate it is that's befallen you,' you say to the skeleton. 'It must be awful to spend eternity as one of the living dead.'
+    (par)
+    'Nope, I love it!' says the skeleton. 'I can eat all the Halloween candy I like and it just falls out through my ribcage!'
+
+(perform [show #compassion to #guard])
+	'I hope you're okay,' you tell the guard. 'That homunculus had a REALLY big knife.'
+    (par)
+    'Eh, I've been menaced with bigger ones,' says the guard.
+
+(perform [show #compassion to #eve])
+    (#negative-space is #in #vault)
+	'It must be hard, being a supervillain,' you say. 'Knowing that so many people are unsympathetic to your goals.'
+    (par)
+    Eve ignores you.
+
+(perform [show #compassion to #eve])
+    ~(#negative-space is #in #vault)
+	'I'm sorry it has to be this way,' you say. 'I know that you're a supervillainess, but some of the blame must lie with the society that made you this way.'
+    (par)
+    'No more talking,' says Eve. 'It's time to end this.'
+
+(perform [show #compassion to #negative-space])
+	'It can't be easy, being a weird anti-person,' you say.
+    (par)
+    'Do not presume to understand me,' sneers the villain.
+
+(perform [show #compassion to (guests $)])
+	'How awful that the party is ruined,' you say to the nearest group of guests.
+    (par)
+    A couple of them nod in agreement. 'I've been looking forward to this all month,' says one. 'I didn't even get to try the bruschetta.'
+
+(perform [show #compassion to #mighty-owl])
+    'All of these people,' you say to Mighty Owl. 'I can't believe that All-Hallows Eve could make them so miserable and scared.'
+    (par)
+    'It is good that you think of them, Showtime,' says Mighty Owl. 'But remember that the best way to safeguard them for the future is to ensure that we win the fight against evil today.'
+
+%% Admiration for Mighty Owl - Eve, Negative Space, Mighty Owl, Kate, skeletons, homunculus, guard
+
+(perform [show #admiration to #kate])
+    'I'm so glad Mighty Owl is here ...' you begin, but Kate shuts you up with a glare.
+
+(perform [show #admiration to #mighty-owl])
+    Oh, you couldn't!
+
+(perform [show #admiration to (animate $Person)])
+    'My mentor, Mighty Owl, is the most amazing hero ...' you begin, but the blank look you get from (the $Person) makes you trail off before you can even finish your sentence.
+
+%% Self-doubt - Mighty Owl, guests, guard
+
+(perform [show #doubt to #mighty-owl])
+	'Can we really win this?' you wonder out loud.
+    (par)
+    'Nothing good ever comes from questioning whether you have the capacity to prevail,' says Mighty Owl. 'Commit yourself to the mission, and if you fail, you will fail knowing that you could not have done any more.'".
+
+(perform [show #doubt to (guests $)])
+	'I think we might be in real trouble,' you say to one of the groups of cowering guests. 'I don't know if I'm up to this.' The guests give you an odd look, and you decide against saying anything further.
+
+(perform [show #doubt to #guard])
+    'Everything okay?' asks the guard.
+    (par)
+	'There are two villains,' you say nervously. 'This seems pretty bad.'
+
+%% Sense of urgency - Eve, Negative Space, Mighty Owl, Kate, guests, guard
+
+(perform [show #urgency to $Person])
+    { ($Person = #eve) (or) ($Person = #negative-space) }
+    You pause for a moment to think about how to best express the urgency of the situation, and decide that it would be better just to get on with defeating the villains.
+
+(perform [show #urgency to #mighty-owl])
+    'Time is running out,' you say, wide-eyed. 'Who knows what those villains could be up to right this second?'
+    (par)
+    'Indeed,' says Mighty Owl. 'This is the test of a true hero: to act unflinchingly and with courage, even in the most dire of circumstances.'
+
+(perform [show #urgency to #kate])
+    'You have to do something!' you say to Kate, your voice cracking. 'You have a weapon that can defeat Negative Space and you're just moping here at the top of a tower? I can't believe you!'
+    (par)
+    Kate turns away. 'I can't believe it either,' she says. 'I thought I was better than this.'
+
+(perform [show #urgency to #guard])
+    'Help! We have to do something!' you tell the guard, a note of panic creeping into your voice.
+    (par)
+    'Hey, I already let you through the door,' says the guard. 'My job is pretty much just to carry these keys around and then if anything bad happens, put in a call and wait for a superhero to turn up. And since you're already here ...' He pauses, then looks you up and down. 'Say, do your parents know you're here?'
+
+(perform [show #urgency to (guests $)])
+    'There isn't much time! Somebody do something!' you wail at the assembled guests.
+    (par)
+    The guests look at each other, then back at you. 'Aren't you the one who's meant to do something?' one of them asks.
+
+%% Heroic resolve - Eve, Negative Space, Mighty Owl, Kate, skeletons, guests, homunculus
+
+(perform [show #resolve to (guests $)])
+    'I'm going to save the day!' you announce. You pause for a moment, but no-one reacts.
+
+(perform [show #resolve to #mighty-owl])
+    'I'm going to save the day!' you announce.
+    (par)
+    'That's the spirit, Showtime,' says your mentor.
+
+(perform [show #resolve to (skeleton $)])
+    'I'm going to defeat you, skeleton!' you yell at the skeleton.
+    (par)
+    'No, you're not,' says the skeleton. 'Because I have a big scary scythe, and you're just a kid.'
+
+(perform [show #resolve to #kate])
+    'We're going to prevail against evil this evening, come what may!' you exclaim to Kate.
+    (par)
+    'Do you realise how dumb you sound?' she asks.
+
+(perform [show #resolve to #eve])
+    'I'm going to defeat you!' you say to Eve, who rolls her eyes.
+
+(perform [show #resolve to #negative-space])
+    'I'm going to defeat you!' you say to Negative Space.
+    (par)
+    'No, you are not,' he replies."
+
+(perform [show #resolve to #homunculus])
+    'I'm going to defeat you, you unnatural horror!' you yell at the homunculus.
+    (par)
+    'You're certainly not going to make my day any brighter with that kind of attitude,' replies the homunculus.
+
+%% Junior Protectorate badge - Eve, Negative Space, Mighty Owl, Kate, skeletons, guests, homunculus, guard
+
+(perform [show #badge to (guests $)])
+	'I'm a member of the Protectorate!' you say, waving the badge.
+    (par)
+    The guests look unimpressed. Someone mutters, 'What are you going to do, then?'
+
+(perform [show #badge to #eve])
+	'I'm a member of the Protectorate!' you say, waving the badge. Eve does not reply.
+
+(perform [show #badge to #negative-space])
+	'I'm a member of the Protectorate!' you say, waving the badge.
+    (par)
+    'And I should care about this why?' asks Negative Space laconically.
+
+(perform [show #badge to #mighty-owl])
+	As your mentor, Mighty Owl was the one who gave you this badge in the first place.
+
+(perform [show #badge to #kate])
+	You hold out your badge to show to Kate, and then pause. 'Hey, where's yours?' you ask.
+    (par)
+    'You're such a dork,' she says. 'Take a look next time you're around real, grown-up heroes and tell me how many of them are wearing theirs.'
+
+(perform [show #badge to #guard])
+	The guard raises his eyebrows. 'They really are letting kids into the Protectorate these days, then?'
+
+(perform [show #badge to (skeleton $)])
+	'Watch out,' you tell the skeleton. 'I'm a fully-qualified superhero!'
+    (par)
+    'Oh, spare me,' says the skeleton. 'Do you see my teeth chattering and my knees knocking in fear? No? Because if I was really scared, you'd be able to see those things. Because I'm a skeleton. A scary skeleton! Boo!'
+
+(perform [show #badge to #homunculus])
+	'Watch out,' you tell the homunculus. 'I'm a fully-qualified superhero!'
+    (par)
+    'And I'm a fully-qualified Cordon Bleu chef,' says the homunculus. 'But much though I'd rather be preparing a schnitzel, I find myself obliged to menace this guard with this big knife instead.'
+
+%% Anti-key - Eve, Mighty Owl, guests, guard
+
+(perform [show #anti-key to #mighty-owl])
+	'Excellent work, Showtime,' says Mighty Owl proudly. 'I think perhaps we may yet prevail against the forces of evil tonight.'
+
+(perform [show #anti-key to (animate $Person)])
+    You wave the Anti-Key around, but (the $Person) only glances at it with momentary curiosity.
+
+%% Meta stuff and parser/library modifications
+
+(grammar [about/help/info/credits] for [about])
+
+(perform [about])
+    (div @meta) {
+        (limited parser text)
+        (par)
+        This is release 2 of this game. Release 1 was written in four hours for Ectocomp 2025 using Inform 7. Thanks to Tabitha for beta-testing. The online version used the 'Styled' website template by Daniel Stelzer.
+        (par)
+        Release 2 is a full rewrite in Dialog, which intends to preserve the character of the original while making it clearer how to progress in a few places and eliminating some default responses and repeated text. Thanks to Daniel Stelzer and improvmonster for technical help with Dialog.
+        (par)
+        The cover art was created by Adam Biltcliffe using a non-AI-generated image designed by Freepik.
+    }
+
+(limited parser text)
+    This is a limited parser game. You can move around using commands like NORTH or N, you can LOOK or take INVENTORY, you can EXAMINE things and SHOW things TO people.
+
+%% Grammar modifications to give a better response to trying to show an emotion you don't have
+
+(grammar [show [emotion] to [animate]] for [show $ to $])
+(grammar [show [animate] [emotion]] for [show $ to $] reversed)
+
+(grammar [show [emotion]] for [show $])
+
+@(grammar transformer [[emotion] | $Tail] $SoFar $Verb $Action $Rev)
+    (grammar transformer $Tail [90 | $SoFar] $Verb $Action $Rev)
+
+(match grammar token 90 against $Words $ into $Obj)
+    *(understand $Words as any object including nowhere $Obj)
+    (emotion $Obj)
+
+(refuse [show (emotion $Emotion)])
+    ~($Emotion is #heldby #player)
+    You aren't feeling that emotion right now.
+
+(refuse [show (emotion $Emotion) to $])
+    ~($Emotion is #heldby #player)
+    You aren't feeling that emotion right now.
+
+(refuse [show $ to $Thing])
+    ~(animate $Thing)
+    You can't show anything to (the $Thing).
+
+(refuse [show $Person to $Person])
+    You don't have a mirror.
+
+(refuse [show $Thing to $Person])
+    ~($Thing is #heldby #player)
+    (The $Person) can already see (the $Thing).
+
+(perform [show (emotion $) to (animate $)])
+    You can't think of a way of expressing that emotion right now.
+
+(unlikely [show $ to $Person])
+    ~(animate $Person)
+
+(instead of [show $Obj])
+    (collect $Person)
+        *($Person is in scope)
+        (animate $Person)
+    (into [$OnlyCandidate])
+    \(to (the full $OnlyCandidate) \) (line)
+    (try [show $Obj to $OnlyCandidate])
+
+(appearance $Person)
+    (animate $Person)
+    You can see (a $Person) here.
