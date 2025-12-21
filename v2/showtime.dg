@@ -25,7 +25,7 @@
 #entrance
 (room *)
 (name *) Mansion Entrance
-(look *) You're just outside the entrance to the Commissioner's mansion. Inside, to the west, you can see the lights and hear the sounds of the kind of society party you've dreamed of attending ever since you first donned your superhero costume and were accepted into the Junior Protectorate.
+(look *) You're just outside the entrance to the Commissioner's mansion. Inside, to the (#west), you can see the lights and hear the sounds of the kind of society party you've dreamed of attending ever since you first donned your superhero costume and were accepted into the Junior Protectorate.
 (from * go #west to #foyer)
 
 #foyer
@@ -40,7 +40,7 @@
     (else)
         You
     (endif)
-    are adrift and alone in almost pitch blackness. You can just make out the faint outline of a door to the west.
+    are adrift and alone in almost pitch blackness. You can just make out the faint outline of a door to the (#west).
 (from * go #west to #graveyard-hallway)
 
 #graveyard-hallway
@@ -50,7 +50,7 @@
     (select)
         Outside the eerie darkness of the foyer, you see that the mansion has been remade in the image of a creepy haunted house!
     (or) (stopping)
-    Gravestones now line the walls of what used to be a regular hallway, some worn as if by decades of rain. The darkness of the foyer looms to the east, and the hallway leads west. To the south, a door leads to what was previously the bar area.
+    Gravestones now line the walls of what used to be a regular hallway, some worn as if by decades of rain. The darkness of the foyer looms to the (#east), and the hallway leads (#west). To the (#south), a door leads to what was previously the bar area.
 (from * go #east to #foyer)
 (from * go #west to #narrow-corridor)
 (from * go #south to #pandemonium)
@@ -58,14 +58,14 @@
 #narrow-corridor
 (room *)
 (name *) Narrow Corridor
-(look *) This part of the mansion features fewer of Eve's spooky decorations. The corridor runs from east to west.
+(look *) This part of the mansion features fewer of Eve's spooky decorations. The corridor runs from (#east) to (#west).
 (from * go #east to #graveyard-hallway)
 (from * go #west to #dining-room)
 
 #dining-room
 (room *)
 (name *) Dining Room of the Dead
-(look *) This was once a stately dining room, but under Eve's stewardship, the delicious-looking dishes have been replaced with rotting corpses, some of them still twitching and moaning. You sincerely hope that those are only theatrical effects. Doors lead south and east, and the buffet area is to the north.
+(look *) This was once a stately dining room, but under Eve's stewardship, the delicious-looking dishes have been replaced with rotting corpses, some of them still twitching and moaning. You sincerely hope that those are only theatrical effects. Doors lead (#south) and (#east), and the buffet area is to the (#north).
 (from * go #east to #narrow-corridor)
 (from * go #north to #buffet)
 (from * go #south to #haunted-staircase)
@@ -73,47 +73,47 @@
 #buffet
 (room *)
 (name *) Buffet of Blood
-(look *) There must have been a sumptuous buffet spread out here before Eve arrived, but now the food is all crushed underfoot. A few tables have been pushed together to form a makeshift barricade for people to hide behind. For some reason, blood is oozing out of the walls. The rest of the dining room is back south.
+(look *) There must have been a sumptuous buffet spread out here before Eve arrived, but now the food is all crushed underfoot. A few tables have been pushed together to form a makeshift barricade for people to hide behind. For some reason, blood is oozing out of the walls. The rest of the dining room is back (#south).
 (from * go #south to #dining-room)
 
 #haunted-staircase
 (room *)
 (name *) Haunted Staircase
-(look *) You're at the foot of a spiral staircase leading to one of the mansion's tower rooms. Barely-visible phantasms drift back and forth in the darkness above you. The dining room is back north.
+(look *) You're at the foot of a spiral staircase leading (#up) to one of the mansion's tower rooms. Barely-visible phantasms drift back and forth in the darkness above you. The dining room is back (#north).
 (from * go #north to #dining-room)
 (from * go #up to #top-of-tower)
 
 #top-of-tower
 (room *)
 (name *) Top of Tower
-(look *) You're atop one of the towers of the mansion. Through the windows to the east, you can see the central courtyard and the chasm which Negative Space vanished into. The only way out is back down.
+(look *) You're atop one of the towers of the mansion. Through the windows to the east, you can see the central courtyard and the chasm which Negative Space vanished into. The only way out is back (#down).
 (from * go #down to #haunted-staircase)
 
 #pandemonium
 (room *)
 (name *) Pandemonium
-(look *) The bar area has given way to pandemonium, in the literal sense. Demonic visages grin and leer from the walls, and flames lick up around the periphery of the room. Foreboding doors allow egress to the north and south.
+(look *) The bar area has given way to pandemonium, in the literal sense. Demonic visages grin and leer from the walls, and flames lick up around the periphery of the room. Foreboding doors allow egress to the (#north) and (#south).
 (from * go #north to #graveyard-hallway)
 (from * go #south to #terrace)
 
 #terrace
 (room *)
 (name *) Torture Terrace
-(look *) This would once have been a charming spot to take in the night air, but now the terrace is adorned with instruments of torture: iron maidens, racks, all sorts of terrible things with spikes - some of them bearing signs of recent use. The bar area is through double doors back to the north, and a smaller door opens to the west.
+(look *) This would once have been a charming spot to take in the night air, but now the terrace is adorned with instruments of torture: iron maidens, racks, all sorts of terrible things with spikes - some of them bearing signs of recent use. The bar area is through double doors back to the (#north), and a smaller door opens to the (#west).
 (from * go #north to #pandemonium)
 (from * go #west to #empty-hallway)
 
 #empty-hallway
 (room *)
 (name *) Empty Hallway
-(look *) This is a small hallway in the service areas of the mansion. Doors lead out to the terrace to the east and into the kitchen to the west.
+(look *) This is a small hallway in the service areas of the mansion. Doors lead out to the terrace to the (#east) and into the kitchen to the (#west).
 (from * go #east to #terrace)
 (from * go #west to #murder-kitchen)
 
 #murder-kitchen
 (room *)
 (name *) Murder Kitchen
-(look *) Smoke and flames from the ovens obscures your vision, and cleavers and carving knives dance ominously over your head. Doors lead north and east.
+(look *) Smoke and flames from the ovens obscures your vision, and cleavers and carving knives dance ominously over your head. Doors lead (#north) and (#east).
 (from * go #east to #empty-hallway)
 (from * go #north to #courtyard)
 
@@ -121,9 +121,9 @@
 (room *)
 (name *) Central Courtyard
 (look *)
-    This is the central courtyard of the mansion. Compared to the hellscape of the kitchen to the south, the air is cool and calm. Discreet vegetation lines the perimeter of the courtyard.
+    This is the central courtyard of the mansion. Compared to the hellscape of the kitchen to the (#south), the air is cool and calm. Discreet vegetation lines the perimeter of the courtyard.
     (if) (#negative-space is #in #vault) (then)
-        A huge chasm has opened up in the ground, leading downwards.
+        A huge chasm has opened up in the ground, leading (#down { downwards }).
     (endif)
 (from * go #south to #murder-kitchen)
 (from * go #down to #vault)
@@ -133,6 +133,7 @@
 (name *) Vault
 (dict *) vault
 (look *) This is the Commissioner's secret vault! Not a storage place for wealth or treasure, but something far more valuable - the records of all of the City's work against supervillainry, including details of many of the heroes who have contributed to the fight. If anyone ill-intentioned were to get their hands on this, it would be a disaster!
+(from * go #up to #courtyard)
 
 %% Things
 
@@ -307,7 +308,7 @@
 (dict *) bouncers bouncer man woman guard guards
 (animate *)
 (pair *)
-(appearance *) Two bouncers are checking visitors off against the guest list as they arrive.
+(appearance *) Two (name *) are checking visitors off against the guest list as they arrive.
 (descr *) A man and a woman, both sporting sunglasses and poorly-fitting suits. They're here to keep away any troublemakers who might otherwise fancy crashing the party, but they won't be much help if anyone with superpowers decides to make an appearance tonight. That part is your job.
 (* is #in #entrance)
 
@@ -896,3 +897,7 @@
 (appearance $Person)
     (animate $Person)
     You can see (a $Person) here.
+
+%% Hyperlinks
+
+(library links enabled)
