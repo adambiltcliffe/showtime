@@ -1648,6 +1648,7 @@
 (grammar [show [single held] to [animate]] for [show $ to $])
 (grammar [show [animate] [single held]] for [show $ to $] reversed)
 
+(grammar [show [animate]] for [show $])
 (grammar [show [single held]] for [show $])
 
 (unlikely [show $Obj to $Obj])
@@ -1671,8 +1672,14 @@
 	}
 
 (perform [show $Obj])
+    ~(animate $Obj)
 	To whom?
 	(asking for object in [show $Obj to []])
+
+(perform [show $Person])
+    (animate $Person)
+	What do you want to show (them $Person)?
+	(asking for object in [show [] to $Person])
 
 (before [show $Obj to $])
 	(item $Obj)
@@ -4282,7 +4289,7 @@
 	(endif)
 
 (maybe link $Obj)
-	(if) (library links enabled) (then)
+	(if) { (library links enabled) ~(emotion $Obj) } (then)
 		(link) (name $Obj)
 	(else)
 		(name $Obj)

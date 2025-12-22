@@ -2,7 +2,7 @@
 (story author) Adam Biltcliffe
 (story noun) A superhero text adventure
 (story release 2)
-(additional banner text) Type "about" for further information.
+(additional banner text) Type "(no space) (link) { about } (no space)" for further information.
 
 (story blurb) You've finally been awarded your Junior Protectorate badge, and tonight is your first real mission: to make sure that the City Commissioner's Halloween party is a success, regardless of the intentions of the local rogue's gallery of supervillains.
 
@@ -178,7 +178,7 @@
 (proper *)
 (male *)
 (descr *) A lantern-jawed titan in a feathered cloak, your mentor bustles about, checking that no-one is injured and glancing back and forth for signs that evil might strike again.
-(appearance * $ $) Mighty Owl is here, busily checking on the party guests to ensure that no-one is hurt.
+(appearance * $ $) (A *) is here, busily checking on the party guests to ensure that no-one is hurt.
 
 #kate
 (name *) Tripli-Kate
@@ -246,7 +246,7 @@
 (animate (guests $))
 (descr (guests $)) Not long ago, these people were happily enjoying the Commissioner's party. Now they huddle in small, frightened groups, wary of whatever ghouls and ghosts All-Hallows Eve might be sending their way next.
 (plural (guests $))
-(appearance (guests $)) Some of the party-goers are huddled here, their enjoyment of the evening having given way to terror.
+(appearance (guests $)) Some of the (link) {party-goers} are huddled here, their enjoyment of the evening having given way to terror.
 
 #pg1
 (guests *)
@@ -264,7 +264,7 @@
 (dict (skeleton $)) skeleton
 (animate (skeleton $))
 (descr (skeleton $)) A tall skeleton, waving a scythe. Although it lacks any facial muscles to express itself with, it looks gleeful at the devastation Eve has brought to the Commissioner's party.
-(appearance (skeleton $)) A macabre skeleton capers here, grinning and wielding a scythe.
+(appearance (skeleton $)) A macabre (link) {skeleton} capers here, grinning and wielding a scythe.
 
 #skele1
 (skeleton *)
@@ -308,7 +308,7 @@
 (dict *) bouncers bouncer man woman guard guards
 (animate *)
 (pair *)
-(appearance *) Two (name *) are checking visitors off against the guest list as they arrive.
+(appearance *) Two (link) {bouncers} are checking visitors off against the guest list as they arrive.
 (descr *) A man and a woman, both sporting sunglasses and poorly-fitting suits. They're here to keep away any troublemakers who might otherwise fancy crashing the party, but they won't be much help if anyone with superpowers decides to make an appearance tonight. That part is your job.
 (* is #in #entrance)
 
@@ -396,7 +396,7 @@
 (on every tick in #narrow-corridor)
     (select)
         (now) (#kate is #in #narrow-corridor)
-        A sullen figure in black is lounging here. Almost immediately, you recognise her as Tripli-Kate, another recent recruit to the Junior Protectorate. She looks up as you approach, and her outline blurs, then coalesces into three identical clones of herself. None of them look pleased to see you.
+        A sullen figure in black is lounging here. Almost immediately, you recognise her as (a #kate), another recent recruit to the Junior Protectorate. She looks up as you approach, and her outline blurs, then coalesces into three identical clones of herself. None of them look pleased to see you.
         (par)
         'Of course it would have to be you,' she says. 'You're here with Mighty Owl, aren't you? Must be nice to have a mentor who actually cares about showing up to your missions with you. I got posted here on my own.'
     (or) (stopping)
@@ -444,7 +444,7 @@
     (par)
     She holds something out to you - a key. Or more of an anti-key, a hole in space where a key should be. 'Go on,' she says. 'You're more ready for this than I am.'
     (par)
-    You take the Anti-Key, marvelling at how it feels like the exact opposite of holding a key. When you look up a moment later, Tripli-Kate is gone.
+    You take the (link) {Anti-Key}, marvelling at how it feels like the exact opposite of holding a key. When you look up a moment later, Tripli-Kate is gone.
 
 (prevent [show $ to #guard])
     (#homunculus is #in #empty-hallway)
@@ -461,7 +461,7 @@
     The homunculus thinks for a moment. 'You're right,' it says. 'Why waste my evening menacing this guard when I could be whipping up a tray of vol-au-vents?' The homunculus steps away from the stoic guard and, with a final look round the hallway, exits onto the terrace and vanishes into the night.
 
 (appearance #homunculus $ $)
-    A solitary guard is trapped here, menaced by a twisted homunculus with a huge knife.
+    A solitary (link) {guard} is trapped here, menaced by a twisted (link) {homunculus} with a huge knife.
 
 (appearance #guard $ $)
     (#homunculus is #in #empty-hallway)    
@@ -490,7 +490,7 @@
     (now) (#negative-space is #in #vault)
     (now) (#resolve is nowhere)
     (now) (#doubt is #heldby #player)
-    Your breath catches in your throat as your vision lights on the figure standing in the centre of the courtyard - or rather, not a figure, more a figure-shaped hole in reality. This is Negative Space, a villain you know all too well - and his mere presence creates a distortion in reality which suppresses the powers of many supers, yourself included. That explains why you've been unable to access your powers since Eve first attacked the mansion!
+    Your breath catches in your throat as your vision lights on the figure standing in the centre of the courtyard - or rather, not a figure, more a figure-shaped hole in reality. This is (a #negative-space), a villain you know all too well - and his mere presence creates a distortion in reality which suppresses the powers of many supers, yourself included. That explains why you've been unable to access your powers since Eve first attacked the mansion!
     (par)
     Negative Space laughs. 'Ah, a baby superhero,' he says. 'I'm afraid you're out of your depth here, little infant. All-Hallows Eve and I are going to make this quite the Halloween to remember. In fact, I think it's going to go DOWN in the history books!'
     (par)
@@ -528,7 +528,7 @@
         (par)
         You regard the bedraggled civilians with dismay. 'Someone has to help them,' you mutter under your breath.
         (par)
-        There is a whoosh of feathers, and Mighty Owl descends from on high. 'Fear not, Showtime!' he says. 'You and I are a mighty force for good! We will save these hapless bystanders from All-Hallows Eve's evil plot!'
+        There is a whoosh of feathers, and (a #mighty-owl) descends from on high. 'Fear not, Showtime!' he says. 'You and I are a mighty force for good! We will save these hapless bystanders from All-Hallows Eve's evil plot!'
         (par)
         The party-goers perk up immediately at the sound of his voice. You feel yourself flush with admiration.
         (par)
@@ -576,11 +576,11 @@
         (par)
         'I saw Mighty Owl earlier,' says one of the party-goers. 'I hope he does save us. He's one of my favourite superheroes!'
         (par)
-        There is a flurry of wings from behind you, and Mighty Owl himself steps into view. His hearing is exceptional, and he can never resist publicity. 'My young protege is not mistaken,' says Mighty Owl. 'Do not fear, noble citizens. Good will triumph over evil this day!' He puffs out his chest.
+        There is a flurry of wings from behind you, and (a #mighty-owl) himself steps into view. His hearing is exceptional, and he can never resist publicity. 'My young protege is not mistaken,' says Mighty Owl. 'Do not fear, noble citizens. Good will triumph over evil this day!' He puffs out his chest.
     (endif)
 
 (appearance #negative-space #in #vault)
-    You can see (the #negative-space) and (the #eve) here.
+    You can see (a #negative-space) and (a #eve) here.
 
 (appearance #eve #in #vault)
     (#negative-space is #in #vault)
@@ -876,6 +876,9 @@
 (refuse [show $Person to $Person])
     You don't have a mirror.
 
+(refuse [show #player to $Person])
+    (The $Person) can already see you.
+
 (refuse [show $Thing to $Person])
     ~($Thing is #heldby #player)
     (The $Person) can already see (the $Thing).
@@ -887,6 +890,7 @@
     ~(animate $Person)
 
 (instead of [show $Obj])
+    ~(animate $Obj)
     (collect $Person)
         *($Person is in scope)
         (animate $Person)
@@ -901,3 +905,81 @@
 %% Hyperlinks
 
 (library links enabled)
+
+(default actions enabled)
+
+(first entry in status area)
+
+(redraw status bar)
+	(inline status bar @inlinebar) {
+        (status bar contents)
+    }
+
+(status bar contents)
+    (if) (implicit action is [show [] to $Person]) (then)
+        Show (the $Person):
+        (now) (first entry in status area)
+        (exhaust) {
+            *($Obj is #heldby #player)
+            (if) (first entry in status area) (then)
+                (link) {(the $Obj)}
+            (else)
+                • (link) {(the $Obj)}
+            (endif)
+            (now) ~(first entry in status area)
+        }
+        (line)
+    (else)
+        (link [me]) {Yourself} •
+        (link [inventory]) {your inventory}
+        (current room $Room)
+        (exhaust) {
+            *(direction $Dir)
+            (from $Room go $Dir to $Dest)
+            • go (link) {(name $Dir)} 
+            (if) ($Dest is visited) (then)
+                \( to (name $Dest) \)
+            (else)
+                \( (describe exit $Dir from $Room) \)
+            (endif)
+        }
+        (line)
+        (now) (first entry in status area)
+        (exhaust) {
+            *($Person is in scope)
+            (animate $Person)
+            (if) (first entry in status area) (then)
+                (link) {(The $Person)}
+            (else)
+                    • (link) {(the $Person)}
+            (endif)
+            (show link command $Person is $T)
+            \( (link $T) {show something to (them $Person)} \)
+            (now) ~(first entry in status area)
+        }
+    (endif)
+
+(show link command $Person is $T)
+    (collect words) (the $Person) (into $W)
+    ($T = [show | $W])
+
+(describe exit #west from #entrance)
+    into the mansion
+
+(describe exit #down from #courtyard)
+    into the chasm
+
+(describe exit #up from #haunted-staircase)
+    past the lurking ghosts
+
+(describe exit $ from $)
+    unexplored
+
+(style class @inlinebar)
+	text-align: left;
+	border: 1px solid rgb\(128, 128, 100\);
+	background-color: rgba\(128, 128, 100, 0.33\);
+	padding: 0.125em;
+	padding-left: 0.67em;
+	border-radius: 12px;
+	margin-top: 1em;
