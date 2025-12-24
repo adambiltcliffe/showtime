@@ -302,6 +302,7 @@
 (dict *) ring of keys
 (descr *) A dozen or more keys hang from the guard's belt.
 (* is #heldby #guard)
+(* is hidden)
 
 #bouncers
 (name *) bouncers
@@ -344,7 +345,7 @@
     The lights flash on for just a brief second, and you see her, high above the foyer, resplendent in her flowing purple costume: the supervillain, All-Hallows Eve!
     (par)
     Then all around you is screaming, and the press of panicked bodies.
-    (any key)
+    (pause)
     (clear)
     Something is deeply wrong. You sense that you are still in the foyer of the mansion, but you can barely see anything. There is no sound from any of the party guests who surrounded you a few moments ago, just faint whispers and ominous scratching and scuttling. Your chest tightens.
     (par)
@@ -471,6 +472,7 @@
 (prevent entering #murder-kitchen)
     ~(guard is convinced)
     The door in that direction is locked. You can see a ring of keys on the guard's belt, though.
+    (now) ~(#ring-of-keys is hidden)
 
 (perform [show #resolve to #guard])
     ~(guard is convinced)
@@ -603,7 +605,7 @@
     'I'm not the one ruining the evening,' you say. 'I'm here to remind everyone about the true meaning of Halloween!' You pause. 'Wait, no, I think the true meaning of Halloween is about soul-crushing terror. Look, I'm new at this. But I'm a hero, and I'm going to save the day!'
     (par)
     You gather the feeling of hope inside you, and project it towards Eve in a sparkling beam of bright rainbow light. She flails helplessly as the energy bowls her off her feet and into the corner of the vault.
-	(any key)
+	(pause)
     (clear)
 	In moments, Mighty Owl and other members of the Protectorate have joined you. You are roundly congratulated for defeating a pair of full-fledged adult supervillains on your very first assignment. You make your way back out of the shattered vault where, with Eve and her minions banished, the party-goers are beginning to embrace the cheesy horror theme which now pervades the mansion.
 	(game over { You have won } )
@@ -946,16 +948,21 @@
         (line)
         (now) (first entry in status area)
         (exhaust) {
-            *($Person is in scope)
-            (animate $Person)
+            *($Thing is in scope)
+            ~(room $Thing)
+            ~($Thing is #heldby #player)
+            ~($Thing = #player)
+            ~($Thing is hidden)
             (if) (first entry in status area) (then)
-                (link) {(The $Person)}
+                (link) {(The $Thing)}
             (else)
-                    • (link) {(the $Person)}
+                    • (link) {(the $Thing)}
             (endif)
-            (show link command $Person is $T)
-            \( (link $T) {show something to (them $Person)} \)
             (now) ~(first entry in status area)
+            (animate $Thing)
+            (show link command $Thing is $T)
+            \( (link $T) {show something to (them $Thing)} \)
+            
         }
     (endif)
 
@@ -983,3 +990,13 @@
 	padding-left: 0.67em;
 	border-radius: 12px;
 	margin-top: 1em;
+
+(pause)
+	(if) (interpreter supports links) (then)
+        (inline status bar @inlinebar) {
+            (link []) { \( Click or press enter to continue ... \) }
+        }
+		(get input $)
+	(else)
+		(any key)
+	(endif)

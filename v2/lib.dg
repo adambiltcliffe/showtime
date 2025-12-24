@@ -1661,8 +1661,6 @@
 (unlikely [show $ to $Dest])
 	~(animate $Dest)
 
-(unlikely [show $])
-
 (refuse [show $Obj to $Person])
 	(just)
 	{
