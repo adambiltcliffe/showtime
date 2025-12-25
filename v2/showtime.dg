@@ -59,8 +59,13 @@
 (room *)
 (name *) Narrow Corridor
 (look *) This part of the mansion features fewer of Eve's spooky decorations. The corridor runs from (#east) to (#west).
+    (if) (wall has collapsed) (then)
+        Part of the wall to the (#south) has collapsed, leaving an opening onto the central courtyard.
+    (endif)
 (from * go #east to #graveyard-hallway)
 (from * go #west to #dining-room)
+(from * go #south to #courtyard)
+    (wall has collapsed)
 
 #dining-room
 (room *)
@@ -113,7 +118,7 @@
 #murder-kitchen
 (room *)
 (name *) Murder Kitchen
-(look *) Smoke and flames from the ovens obscures your vision, and cleavers and carving knives dance ominously over your head. Doors lead (#north) and (#east).
+(look *) Smoke and flames from the ovens obscure your vision, and cleavers and carving knives dance ominously over your head. Doors lead (#north) and (#east).
 (from * go #east to #empty-hallway)
 (from * go #north to #courtyard)
 
@@ -123,10 +128,15 @@
 (look *)
     This is the central courtyard of the mansion. Compared to the hellscape of the kitchen to the (#south), the air is cool and calm. Discreet vegetation lines the perimeter of the courtyard.
     (if) (#negative-space is #in #vault) (then)
-        A huge chasm has opened up in the ground, leading (#down { downwards }).
+        (par) A huge chasm has opened up in the ground, leading (#down { downwards })
+        (if) (wall has collapsed) (then)
+            , and part of the wall to the (#north) has collapsed as well
+        (endif) .
     (endif)
 (from * go #south to #murder-kitchen)
 (from * go #down to #vault)
+(from * go #north to #narrow-corridor)
+    (wall has collapsed)
 
 #vault
 (room *)
@@ -506,6 +516,18 @@
 
 (narrate leaving #courtyard #down)
     You steel yourself and leap down into the chasm!
+
+~(wall has collapsed)
+
+(on every tick) %% fires before (on every tick in $)
+    ~(#negative-space is #in #courtyard)
+    ~(wall has collapsed)
+    (now) (wall has collapsed)
+    (if) (#player is #in #courtyard) (then)
+        (par) No doubt damaged by Negative Space's antics, a section of the north wall gives way, collapsing into a pile of rubble.
+    (else)
+        (par) You hear a rumble of collapsing masonry from elsewhere in the mansion, no doubt a result of Negative Space's antics.
+    (endif)
 
 ~(player has examined civilians)
 
