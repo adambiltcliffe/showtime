@@ -873,9 +873,14 @@
     (div @meta) {
         (limited parser text)
         (par)
-        This is release 2 of this game. Release 1 was written in four hours for Ectocomp 2025 using Inform 7. Thanks to Tabitha for beta-testing. The online version used the 'Styled' website template by Daniel Stelzer.
+        This is release 2 of this game. Release 1 was written in four hours for Ectocomp 2025 using Inform 7.
+        Release 2 is a full rewrite in Dialog, which intends to preserve the character of the original while making it clearer how to progress in a few places, eliminating some default responses and repeated text, and adding a clickable interface as an alternative to typing commands.
         (par)
-        Release 2 is a full rewrite in Dialog, which intends to preserve the character of the original while making it clearer how to progress in a few places and eliminating some default responses and repeated text. Thanks to Daniel Stelzer and improvmonster for technical help with Dialog.
+        Thanks to:
+        (line) (space 4) Tabitha for testing and feedback on release 1
+        (line) (space 4) mathbrush and rh for testing and feedback on release 2
+        (line) (space 4) Daniel Stelzer and improvmonster for technical help with Dialog
+        (line) (space 4) Daniel Stelzer for the 'Styled' website template used in the online version of release 1
         (par)
         The cover art was created by Adam Biltcliffe using a non-AI-generated image designed by Freepik.
     }
