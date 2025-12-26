@@ -871,6 +871,19 @@
 (limited parser text)
     This is a limited parser game. You can move around using commands like NORTH or N, you can LOOK or take INVENTORY, you can EXAMINE things and SHOW things TO people.
 
+(perform [inventory])
+	(current player $Player)
+    You have:
+    (exhaust) {
+        *($C is #heldby $Player)
+        (line) (space 4) (a $C)
+        (if) *($Person is in scope) (animate $Person) (then)
+            (show link command $C is $T)
+            \( (link $T) {show (them $C)} \)
+        (endif)
+    }
+    (par)
+
 %% Grammar modifications to give a better response to trying to show an emotion you don't have
 
 (grammar [show [emotion] to [animate]] for [show $ to $])
@@ -953,6 +966,20 @@
             (now) ~(first entry in status area)
         }
         (line)
+    (elseif) (implicit action is [show $Obj to []]) (then)
+        Show (the $Obj) to:
+        (now) (first entry in status area)
+        (exhaust) {
+            *($Person is in scope)
+            (animate $Person)
+            (if) (first entry in status area) (then)
+                (link) {(the $Person)}
+            (else)
+                • (link) {(the $Person)}
+            (endif)
+            (now) ~(first entry in status area)
+        }
+        (line)
     (else)
         (link [me]) {Yourself} •
         (link [inventory]) {your inventory}
@@ -984,7 +1011,6 @@
             (animate $Thing)
             (show link command $Thing is $T)
             \( (link $T) {show something to (them $Thing)} \)
-            
         }
     (endif)
 

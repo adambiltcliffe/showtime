@@ -1521,14 +1521,7 @@
 (describe action [inventory])
 	take inventory
 
-(perform [inventory])
-	(current player $Player)
-    You have:
-    (exhaust) {
-        *($C is #heldby $Player)
-        (line) (space 4) (a $C)
-    }
-    (par)
+(perform [inventory]) %% replaced in showtime.dg
 
 %% EXITS
 
@@ -1671,8 +1664,12 @@
 
 (perform [show $Obj])
     ~(animate $Obj)
-	To whom?
-	(asking for object in [show $Obj to []])
+    (if) *($Person is in scope) (animate $Person) (then)
+	    To whom?
+	    (asking for object in [show $Obj to []])
+    (else)
+        There's no-one here to show (them $Obj) to.
+    (endif)
 
 (perform [show $Person])
     (animate $Person)
