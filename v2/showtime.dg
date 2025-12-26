@@ -329,13 +329,22 @@
     (current room #entrance)
     The bouncers block your way and give you an expectant look.
 
-~(bouncers are placated)
+~(bouncers have seen badge)
+~(bouncers have seen resolve)
+
 (perform [show #badge to #bouncers])
-    (now) (bouncers are placated)
+    ~(bouncers have seen resolve)
+    (now) (bouncers have seen badge)
     'Checks out,' says one of the bouncers to the other. 'Just a kid, but that's how the Protectorate are rolling these days.' He looks you up and down critically. 'You're here to help if anything goes down at the Commissioner's party? Really?'
 
+(perform [show #badge to #bouncers])
+    (bouncers have seen resolve)
+    'Checks out,' says one of the bouncers to the other. 'Just a kid, but that's how the Protectorate are rolling these days.'
+    (mansion entrance scene)
+
 (perform [show #resolve to #bouncers])
-    ~(bouncers are placated)
+    ~(bouncers have seen badge)
+    (now) (bouncers have seen resolve)
     'You can't come in,' says one of the bouncers.
     (par)
     'I'm here on Protectorate business,' you tell her. 'The Commissioner needs the city's best heroes on hand in case any villains try to cause trouble at the party, and I'm here to do my job and keep everyone safe.'
@@ -343,10 +352,13 @@
     She looks unconvinced. 'If you're really Protectorate, prove it,' she says.
 
 (perform [show #resolve to #bouncers])
-    (bouncers are placated)
+    (bouncers have seen badge)
+    'I'm a fully-fledged member of the Junior Protectorate,' you tell the bouncers. 'This is a high-profile event, and the Commissioner knows that she can count on us to protect everyone if any villains try anything. I know you think I'm just a kid, but I'm here to play my part.'
+    (mansion entrance scene)
+
+(mansion entrance scene)
     (now) (#resolve is nowhere)
     (now) (#fear is #heldby #player)
-    'I'm a fully-fledged member of the Junior Protectorate,' you tell the bouncers. 'This is a high-profile event, and the Commissioner knows that she can count on us to protect everyone if any villains try anything. I know you think I'm just a kid, but I'm here to play my part.'
     (par)
     The bouncers part to allow you through. Inside, the foyer of the mansion is thronged with party-goers: politicans, celebrities, businesspeople, reporters. Somewhere across the sea of bodies, you catch sight of a familiar costume: your mentor, Mighty Owl, chatting with a gaggle of philanthropists.
     (par)
