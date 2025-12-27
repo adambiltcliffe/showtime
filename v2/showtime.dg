@@ -439,7 +439,7 @@
 (perform [show #compassion to #kate])
     'It sucks about your mentor,' you say. 'I've got lucky -'
     (par)
-    Kate cuts you off. 'You did that spiel already.'"
+    Kate cuts you off. 'You did that spiel already.'
 
 (prevent entering #top-of-tower)
     ~(#urgency is #heldby #player)
@@ -744,6 +744,21 @@
 (perform [show #admiration to #mighty-owl])
     Oh, you couldn't!
 
+(perform [show #admiration to #homunculus])
+    'Watch out,' you tell the homunculus. 'My mentor, Mighty Owl, is here too.'
+    (par)
+    'Oh, you have a proper mentorship programme?' asks the homunculus, raising an eyebrow. 'I just got half an hour with HR and a three-ring binder labelled "Minionhood and You".'
+
+(perform [show #admiration to #guard])
+    'Have you heard of my mentor, Mighty Owl?' you ask the guard. 'He's one of the Protectorate's most famous heroes!'
+    (par)
+    'Uh, sure,' says the guard. 'He's an actual adult, right? Not like you?'
+
+(perform [show #admiration to (skeleton $)])
+    'Watch out,' you tell the skeleton. 'My mentor, Mighty Owl, is here too.'
+    (par)
+    'I bet he's not as mighty as my big, sharp scythe!' cackles the skeleton.
+
 (perform [show #admiration to (animate $Person)])
     'My mentor, Mighty Owl, is the most amazing hero ...' you begin, but the blank look you get from (the $Person) makes you trail off before you can even finish your sentence.
 
@@ -752,7 +767,7 @@
 (perform [show #doubt to #mighty-owl])
 	'Can we really win this?' you wonder out loud.
     (par)
-    'Nothing good ever comes from questioning whether you have the capacity to prevail,' says Mighty Owl. 'Commit yourself to the mission, and if you fail, you will fail knowing that you could not have done any more.'".
+    'Nothing good ever comes from questioning whether you have the capacity to prevail,' says Mighty Owl. 'Commit yourself to the mission, and if you fail, you will fail knowing that you could not have done any more.'.
 
 (perform [show #doubt to (guests $)])
 	'I think we might be in real trouble,' you say to one of the groups of cowering guests. 'I don't know if I'm up to this.' The guests give you an odd look, and you decide against saying anything further.
@@ -814,12 +829,16 @@
 (perform [show #resolve to #negative-space])
     'I'm going to defeat you!' you say to Negative Space.
     (par)
-    'No, you are not,' he replies."
+    'No, you are not,' he replies.
 
 (perform [show #resolve to #homunculus])
     'I'm going to defeat you, you unnatural horror!' you yell at the homunculus.
     (par)
     'You're certainly not going to make my day any brighter with that kind of attitude,' replies the homunculus.
+
+(perform [show #resolve to #guard])
+    (guard is convinced)
+    'I'm going to save the day now!' you tell the guard, who nods encouragingly.
 
 %% Junior Protectorate badge - Eve, Negative Space, Mighty Owl, Kate, skeletons, guests, homunculus, guard
 
@@ -878,7 +897,7 @@
         (par)
         Thanks to:
         (line) (space 4) Tabitha for testing and feedback on release 1
-        (line) (space 4) mathbrush and rh for testing and feedback on release 2
+        (line) (space 4) mathbrush, Allyson Grey and rh for testing and feedback on release 2
         (line) (space 4) Daniel Stelzer and improvmonster for technical help with Dialog
         (line) (space 4) Daniel Stelzer for the 'Styled' website template used in the online version of release 1
         (par)
@@ -956,6 +975,17 @@
     (animate $Person)
     You can see (a $Person) here.
 
+%% Leave in the ability to go to a room by typing its name for parser players
+
+(understand $Words as [go to $Room])
+	*(understand $Words as room name $Room)
+
+(default action $Room [go to $Room])
+    (room $Room)
+
+(proper $Room) %% all our room names are written as if they're proper nouns
+    (room $Room)
+
 %% Hyperlinks
 
 (library links enabled)
@@ -999,7 +1029,8 @@
         (line)
     (else)
         (link [me]) {Yourself} •
-        (link [inventory]) {your inventory}
+        (link [inventory]) {your inventory} •
+        (link [look around]) {look around}
         (current room $Room)
         (exhaust) {
             *(direction $Dir)
