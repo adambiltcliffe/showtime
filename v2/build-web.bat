@@ -1,4 +1,5 @@
 @echo off
+rem This is not a build process, this is a garbage fire, but that's what I get for using Windows.
 del /s /q showtime_web\*
 rmdir showtime_web\resources
 rmdir showtime_web
